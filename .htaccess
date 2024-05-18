@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteBase /
+
+# Ensure not to redirect requests for the public directory or its contents
+RewriteRule ^public/ - [L]
+
+# Redirect all other requests to public/index.php
+RewriteRule ^(.*)$ public/index.php [L]
