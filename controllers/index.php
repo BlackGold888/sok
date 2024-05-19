@@ -12,10 +12,13 @@ $db = App::get(Database::class);
 function getSections($parent_id = null, $db) {
 
     if ($parent_id === null) {
-        $sections = $db->query("SELECT * FROM sections WHERE parent_id IS NULL")->get();
+        $sections = $db->query("SELECT * FROM sections WHERE parent_id IS NULL and user_id = :userId", [
+            'userId' => $_SESSION['user']['id']
+        ])->get();
     } else {
-        $sections = $db->query("SELECT * FROM sections WHERE parent_id = :parent_id", [
-            'parent_id' => $parent_id
+        $sections = $db->query("SELECT * FROM sections WHERE parent_id = :parent_id and user_id=:userId", [
+            'parent_id' => $parent_id,
+            'userId' => $_SESSION['user']['id']
         ])->get();
     }
 

@@ -22,7 +22,9 @@ $validator->validate('description', 'required|min:6|max:500');
 $errors = $validator->errors();
 
 if (!empty($errors)) {
-    $sections = $db->query('SELECT * FROM sections')->get();
+    $sections = $db->query('SELECT * FROM sections where user_id = :userId', [
+        'userId' => $_SESSION['user']['id']
+    ])->get();
 
 
     view('add.view.php', [

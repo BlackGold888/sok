@@ -5,14 +5,11 @@
             <form action="/section/store" method="POST">
                 <label>Parent Id</label>
                 <select name="parent_id">
-                    <option value="">Select parent</option>
+                    <option value=""></option>
                     <?php foreach ($sections as $section): ?>
                         <option value="<?= $section['id'] ?>"><?= $section['name'] ?></option>
                     <?php endforeach; ?>
                 </select>
-
-
-
                 <label>Section Name</label>
                 <input type="text" name="name" required>
                 <label>Section description</label>
