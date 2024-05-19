@@ -20,10 +20,15 @@ function dd($data)
     echo '</pre>';
 }
 
+/**
+ * @param $path
+ * @return string
+ */
 function base_path($path = '')
 {
     return __DIR__ . "/../{$path}";
 }
+
 
 /**
  * @param $viewName
@@ -43,6 +48,4 @@ function view($viewName, $data = [])
             return;
         }
     }
-
-
 }

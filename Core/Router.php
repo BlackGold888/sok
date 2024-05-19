@@ -21,31 +21,52 @@ class Router {
     }
 
 
+    /**
+     * @param $uri
+     * @param $controller
+     * @return $this
+     */
     public function get($uri, $controller)
     {
         return $this->add('GET', $uri, $controller);
     }
 
+    /**
+     * @param $uri
+     * @param $controller
+     * @return $this
+     */
     public function post($uri, $controller)
     {
         return $this->add('POST', $uri, $controller);
     }
 
-    public function put($uri, $controller)
-    {
-        return $this->add('PUT', $uri, $controller);
-    }
-
+    /**
+     * @param $uri
+     * @param $controller
+     * @return $this
+     */
     public function delete($uri, $controller)
     {
         return $this->add('DELETE', $uri, $controller);
     }
 
+    /**
+     * @param $uri
+     * @param $controller
+     * @return $this
+     */
     public function patch($uri, $controller)
     {
         return $this->add('PATCH', $uri, $controller);
     }
 
+    /**
+     * @param $uri
+     * @param $method
+     * @return void
+     * @throws \Exception
+     */
     public function direct($uri, $method)
     {
         foreach ($this->routes as $route) {
@@ -63,6 +84,10 @@ class Router {
         require base_path('controllers/404.php');
     }
 
+    /**
+     * @param $key
+     * @return $this
+     */
     public function middleware($key)
     {
         $this->routes[count($this->routes) - 1]['middleware'] = $key;

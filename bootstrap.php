@@ -12,4 +12,3 @@ $container->bind('Core\Database', function () {
 });
 
 App::bind(Database::class, $container->resolve(Database::class));
-

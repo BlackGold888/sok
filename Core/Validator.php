@@ -6,11 +6,19 @@ class Validator
     private $data;
     private $errors = [];
 
+    /**
+     * @param $data
+     */
     public function __construct($data)
     {
         $this->data = $data;
     }
 
+    /**
+     * @param $field
+     * @param $rules
+     * @return void
+     */
     public function validate($field, $rules)
     {
         $rules = explode('|', $rules);
@@ -40,6 +48,11 @@ class Validator
         }
     }
 
+    /**
+     * @param $field
+     * @param $error
+     * @return void
+     */
     public function addError($field, $error)
     {
         $this->errors[$field][] = $error;
@@ -55,21 +68,3 @@ class Validator
         return empty($this->errors);
     }
 }
-
-//example //TODO remove this
-// $validator = new Validator([
-//     'email' => 'test',
-//     'password' => '123'
-// ]);
-//
-//    $validator->validate('email', 'required|email');
-//
-//    if ($validator->passed()) {
-//        echo 'Validation passed';
-//    } else {
-//        echo 'Validation failed';
-//    }
-//
-//    var_dump($validator->errors());
-//
-//    $validator->validate('password', 'required|min:6|max:12');

@@ -11,6 +11,11 @@ class Container
         $this->bindings[$key] = $resolver;
     }
 
+    /**
+     * @param $key
+     * @return mixed
+     * @throws \Exception
+     */
     public function resolve($key)
     {
         if (array_key_exists($key, $this->bindings)) {
@@ -19,5 +24,4 @@ class Container
 
         throw new \Exception("No {$key} is bound in the container.");
     }
-
 }

@@ -2,7 +2,6 @@
 
 namespace Core;
 
-
 use PDO;
 use PDOStatement;
 
@@ -44,6 +43,9 @@ class Database
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function find()
     {
         return $this->statement->fetch();
@@ -52,16 +54,5 @@ class Database
     public function get()
     {
         return $this->statement->fetchAll();
-    }
-
-    public function findOrFail()
-    {
-        $result = $this->find();
-
-        if (!$result) {
-            throw new Exception('No record found');
-        }
-
-        return $result;
     }
 }
