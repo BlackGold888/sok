@@ -25,9 +25,24 @@ function base_path($path = '')
     return __DIR__ . "/../{$path}";
 }
 
-function view($path, $data = [])
+/**
+ * @param $viewName
+ * @param $data
+ * @return void
+ */
+function view($viewName, $data = [])
 {
     extract($data);
 
-    require_once base_path($path);
+    //recursive view finder
+    $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(base_path('views')));
+
+    foreach ($iterator as $file) {
+        if ($file->isFile() && $file->getFilename() == $viewName) {
+            require $file->getPathname();
+            return;
+        }
+    }
+
+
 }

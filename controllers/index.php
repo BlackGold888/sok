@@ -2,4 +2,7 @@
 
 $header = 'header from file';
 
-view('views/index.view.php');
+
+$_SESSION['name'] = 'John Doe';
+
+view('index.view.php');

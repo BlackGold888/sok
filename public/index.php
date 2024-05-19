@@ -1,17 +1,28 @@
 <?php
+session_start();
+
+use Core\Router;
 
 const BASE_PATH = __DIR__ . '/../';
 
 require BASE_PATH . 'Core/functions.php';
 
 spl_autoload_register(function ($class) {
-    require base_path("Core/{$class}.php");
+
+    $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);
+
+    require base_path("{$class}.php");
 });
 
-require BASE_PATH . 'Core/router.php';
+$router = new Router();
+
+require base_path('bootstrap.php');
 
 
-// connect to the database MySQL
+$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
-$config = require('config.php');
-$database = new Database($config['database']);
+require base_path('routes.php');
+
+$method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
+
+$router->direct($uri, $method);

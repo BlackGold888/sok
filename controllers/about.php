@@ -2,6 +2,6 @@
 
 $header = 'header from about';
 
-view('views/about.view.php', [
+view('about.view.php', [
     'header' => $header
 ]);

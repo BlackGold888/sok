@@ -1,5 +1,11 @@
 <?php
 
+namespace Core;
+
+
+use PDO;
+use PDOStatement;
+
 class Database
 {
 
@@ -21,13 +27,10 @@ class Database
     public function __construct($config)
     {
         $dsn = 'mysql:' . http_build_query($config, '', ';');
-
         $this->pdo = new PDO($dsn, $config['username'], $config['password'],[
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ]);
     }
-
-    //query
 
     /**
      * @param $sql
